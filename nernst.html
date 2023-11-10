@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <title>Constataci&oacute;n de la ecuaci&oacute;n de Nernst</title>
+    <style>
+        body {
+            background-color: #e0e0ff; /* Fondo azul claro */
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 20px;
+            text-align: center;
+            }
+        body{
+            background-image:url('https://uvn-brightspot.s3.amazonaws.com/assets/vixes/btg/curiosidades.batanga.com/files/Que-importancia-tienen-las-celulas-gliales-para-el-organismo-3.jpg');
+            background-size:cover;
+           }
+        h1 {
+            color: #004080; /* Título en color azul más oscuro */
+        }
+        input[type="number"] {
+            width: 200px;
+            padding: 10px;
+            margin: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            background-color: #004080; /* Botón en color azul más oscuro */
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #005cb3; /* Cambio de color al pasar el cursor sobre el botón */
+        }
+        #resultado, #mensaje {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function calcular() {
+            var numero1 = parseFloat(document.getElementById("numero1").value);
+            var numero2 = parseFloat(document.getElementById("numero2").value);
+
+            var resultado = -(8.314463 * (numero1 + 273.15)) / 96500 * Math.log(0.0009652 / 0.009022) * 1000;
+
+            var sup = numero2 + (numero2 * 0.05);
+            var inf = numero2 - (numero2 * 0.05);
+
+            document.getElementById("resultado").innerText = "El valor teorico del potencial de Nernst es: " + resultado + " mV";
+
+            var mensaje = "";
+            if ((resultado > inf) && (resultado < sup)) {
+                mensaje = "El valor corresponde con el de una persona sana.";
+            } else {
+                mensaje = "Valor anormal. Consulte al medico para un estudio en profundidad.";
+            }
+            document.getElementById("mensaje").innerText = mensaje;
+        }
+    </script>
+</head>
+<body>
+<h1>Constataci&oacute;n del potencial de Nernst en las c&eacute;lulas gliales
+            de una persona.</h1>
+<h3>Para llevar a cabo este an&aacute;lisis simplificado, se han seleccionado
+unas actividades para A=0.009022 y para B=0.0009602</h3>
+
+<p>Introduzca el valor de la temperatura T de la muestra: </p>
+    <input type="number" id="numero1" placeholder="Introduce el valor de la temperatura (T)">
+<br>
+<p>Introduzca el valor del potencial de Nernst obtenido: </p>
+    <input type="number" id="numero2" placeholder="Introduce el valor del potencial de Nernst">
+    <br>
+    <button onclick="calcular()">Calcular</button>
+    <p id="resultado"></p>
+    <p id="mensaje"></p>
+    <img id="imagenMostrada" src="#" alt="Vista previa de la imagen" style="max-width: 200px; display: none">
+    
+</body>
+</html>
